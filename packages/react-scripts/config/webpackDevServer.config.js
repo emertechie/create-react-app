@@ -17,6 +17,7 @@ const fs = require('fs');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
+const hot = process.env.HOT !== 'false';
 
 module.exports = function(proxy, allowedHost) {
   return {
@@ -65,7 +66,7 @@ module.exports = function(proxy, allowedHost) {
     // updated. The WebpackDevServer client is included as an entry point
     // in the Webpack development configuration. Note that only changes
     // to CSS are currently hot reloaded. JS changes will refresh the browser.
-    hot: true,
+    hot: hot,
     // Use 'ws' instead of 'sockjs-node' on server since we're using native
     // websockets in `webpackHotDevClient`.
     transportMode: 'ws',
